@@ -1,0 +1,145 @@
+/* app/static/style.css */
+
+/* Global layout & typography */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0b0d10;
+  color: #e8edf2;
+}
+
+/* Container used on all pages */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header bar */
+.site-header {
+  background: #10151d;
+  border-bottom: 1px solid #1d2632;
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo / app name in the header */
+.logo a {
+  color: #e8edf2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Admin navigation links */
+.nav a {
+  margin-left: 1rem;
+  color: #9aa6b2;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.nav a:hover {
+  color: #e8edf2;
+}
+
+/* Card component used by pages */
+.card {
+  background: #10151d;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Narrow card, for login form etc. */
+.card-narrow {
+  max-width: 420px;
+  margin: 2rem auto;
+}
+
+/* Simple form styling */
+.form label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #1d2632;
+  background: #0f141a;
+  color: #e8edf2;
+}
+
+/* Primary button */
+button {
+  cursor: pointer;
+  background: #5b71ef;
+  border-color: #5b71ef;
+}
+
+button:hover {
+  background: #6f82f4;
+}
+
+/* Tables used in admin pages */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #1d2632;
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+/* Status message below QR scanner */
+.status {
+  margin-top: 1rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  background: #0f141a;
+  border: 1px solid #1d2632;
+  font-size: 0.9rem;
+}
+
+.status-ok {
+  border-color: #1fbf75;
+}
+
+.status-error {
+  border-color: #ef4444;
+}
+
+/* Error message for login */
+.alert-error {
+  background: #2c0b0b;
+  color: #fca5a5;
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+/* Utility alignment for QR scanner container */
+#qr-reader {
+  max-width: 500px;
+  margin: 1rem 0;
+}

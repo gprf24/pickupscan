@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"          # host:container
+    restart: unless-stopped
+    env_file:
+      - .env               

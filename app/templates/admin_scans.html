@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+  <h2>Recent scans</h2>
+
+  <p>
+    Showing scan events from the database.<br />
+    <strong>Note:</strong> times below are shown in your
+    <strong>browser's local time</strong>, converted from UTC stored in the database.
+  </p>
+
+  <!-- Limit selector (10 / 50 / 100 / 200 / all) -->
+  <form method="get" action="/admin/scans" class="form-inline">
+    <label>
+      Rows to display:
+      <select name="limit" onchange="this.form.submit()">
+        <option value="10"  {% if current_limit == '10' %}selected{% endif %}>10</option>
+        <option value="50"  {% if current_limit == '50' %}selected{% endif %}>50</option>
+        <option value="100" {% if current_limit == '100' %}selected{% endif %}>100</option>
+        <option value="200" {% if current_limit == '200' %}selected{% endif %}>200</option>
+        <option value="all" {% if current_limit == 'all' %}selected{% endif %}>All</option>
+      </select>
+    </label>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Time (local browser)</th>
+        <th>Pharmacy</th>
+        <th>Region</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Map</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in scans %}
+        <tr>
+          <!--
+            We store the original UTC timestamp (as ISO string) in data-utc.
+            The cell will be filled by JavaScript with local browser time.
+          -->
+          <td
+            class="utc-time"
+            data-utc="{{ s.scanned_at.isoformat() }}Z"
+          >
+            <!-- Fallback text if JavaScript is disabled -->
+            {{ s.scanned_at }} (UTC)
+          </td>
+          <td>{{ s.pharmacy_name }}</td>
+          <td>{{ s.region_name or "-" }}</td>
+          <td>
+            {% if s.latitude is not none %}
+              {{ "%.6f"|format(s.latitude) }}
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            {% if s.longitude is not none %}
+              {{ "%.6f"|format(s.longitude) }}
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>
+            {% if s.latitude is not none and s.longitude is not none %}
+              <a
+                href="https://www.google.com/maps?q={{ s.latitude }},{{ s.longitude }}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open map
+              </a>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<!-- Script that converts UTC timestamps to local browser time -->
+<script src="{{ url_for('static', path='admin-scans.js') }}"></script>
+{% endblock %}

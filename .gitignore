@@ -1,0 +1,5 @@
+venv
+test.py
+.env
+alter.py
+.vscode

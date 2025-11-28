@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+  <h2>Scan pharmacy QR code</h2>
+  <p>
+    Point your camera at the QR code displayed in the pharmacy.
+    We will record the pharmacy, region, timestamp, and your location.
+  </p>
+
+  <!-- QR scanner container (used by html5-qrcode) -->
+  <div id="qr-reader"></div>
+
+  <!-- Status message shown by qr-scanner.js -->
+  <div id="scan-status" class="status"></div>
+</section>
+
+<!-- QR scanner library from CDN -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<!-- Our custom JS for handling QR scans -->
+<script src="{{ url_for('static', path='qr-scanner.js') }}"></script>
+{% endblock %}

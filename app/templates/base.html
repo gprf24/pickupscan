@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title or "pickupscan" }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <div class="logo">
+        <a href="/">pickupscan</a>
+      </div>
+      {% if admin %}
+        <!-- Show admin navigation only when an admin is logged in -->
+        <nav class="nav">
+          <a href="/admin/scans">Scans</a>
+          <a href="/admin/pharmacies">Pharmacies</a>
+          <a href="/admin/regions">Regions</a>
+          <a href="/admin/logout">Logout</a>
+        </nav>
+      {% endif %}
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

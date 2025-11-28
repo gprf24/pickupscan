@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+  <h2>Regions</h2>
+
+  <h3>Create new region</h3>
+  <form method="post" action="/admin/regions/create" class="form-inline">
+    <input type="text" name="name" placeholder="Name (e.g. NRW West)" required />
+    <input type="text" name="code" placeholder="Internal code (e.g. NRW1)" required />
+    <button type="submit">Create</button>
+  </form>
+
+  <h3>Existing regions</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Internal code</th>
+        <th>Public ID (QR token)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in regions %}
+        <tr>
+          <td>{{ r.name }}</td>
+          <td>{{ r.code }}</td>
+          <td>{{ r.public_id }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
